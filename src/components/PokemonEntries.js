@@ -1,9 +1,13 @@
 import React from 'react';
+import PokemonEntry from './PokemonEntry';
 
 const PokemonEntries = () => {
     return (
         <div>
-            <h2>POKEMON ENTRIES</h2>
+            <PokemonEntry></PokemonEntry>
+            <PokemonEntry></PokemonEntry>
+            <PokemonEntry></PokemonEntry>
+            <PokemonEntry></PokemonEntry>
         </div>
     );
 };
