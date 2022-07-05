@@ -3,7 +3,7 @@ import PokemonEntry from './PokemonEntry';
 
 const PokemonEntries = () => {
     return (
-        <div>
+        <div className="pkmn-entries">
             <PokemonEntry></PokemonEntry>
             <PokemonEntry></PokemonEntry>
             <PokemonEntry></PokemonEntry>

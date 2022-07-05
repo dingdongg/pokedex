@@ -2,10 +2,10 @@ import React from 'react';
 
 const PokemonEntry = () => {
     return (
-        <div>
+        <div className="pkmn-entry">
             <img src="#" alt="PokemonEntry icon goes here" />
-            <div>name of pokemon</div>
-            <div>pokedex #</div>
+            <div className="pkmn-name">name of pokemon</div>
+            <div className="pkmn-id">pokedex #</div>
         </div>
     );
 };
