@@ -1,13 +1,16 @@
 import './App.css';
 import Overview from './components/Overview';
 import PokemonEntries from './components/PokemonEntries';
+import React, {useState} from 'react';
 
 function App() {
+
+  const [pokedex, updatePokedex] = useState(['bulblar', 'yeyey']);
+
   return (
     <div className="App">
-      <h1>HELLO REACT</h1>
       <Overview></Overview>
-      <PokemonEntries></PokemonEntries>
+      <PokemonEntries pokedex={pokedex} updatePokedex={updatePokedex}></PokemonEntries>
     </div>
   );
 }
