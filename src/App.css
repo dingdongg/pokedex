@@ -27,3 +27,16 @@ html, body {
   height: 80%;
   width: 80%;
 }
+
+.pkmn-entries {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  height: inherit;
+  justify-content: space-around;
+}
+
+.pkmn-entry {
+  display: flex;
+  justify-content: space-around;
+}
