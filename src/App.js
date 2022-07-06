@@ -13,6 +13,7 @@ function App() {
     cacheImages: true,
   }
   const [pokedex] = useState(new Pokedex(pokedexConfig));
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   // run only once on reboot
   useEffect(() => {
@@ -44,6 +45,10 @@ function App() {
     updatePokemonList(initialData);
   }
 
+  function updateSelected(e) {
+    setSelectedIndex(parseInt(e.target.children[2].textContent) - 1);
+  }
+
 
   return (
     <div className="App">
@@ -51,6 +56,8 @@ function App() {
       <PokemonEntries 
         pokemonList={pokemonList} 
         updatePokemonList={updatePokemonList}
+        selectedIndex={selectedIndex}
+        updateSelected={updateSelected}
       >
       </PokemonEntries>
     </div>
