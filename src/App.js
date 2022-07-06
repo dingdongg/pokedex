@@ -7,7 +7,12 @@ import Pokedex from 'pokedex-promise-v2';
 function App() {
 
   const [pokemonList, updatePokemonList] = useState([]);
-  const [pokedex] = useState(new Pokedex());
+  const pokedexConfig = {
+    cache: true,
+    timeout: 5 * 10000,
+    cacheImages: true,
+  }
+  const [pokedex] = useState(new Pokedex(pokedexConfig));
 
   // run only once on reboot
   useEffect(() => {
@@ -24,7 +29,8 @@ function App() {
             let parsedInfo = {
               name: response.name,
               id: response.id,
-              icon: response.sprites.versions['generation-viii'].icons.front_default,
+              smallIcon: response.sprites.versions['generation-viii'].icons.front_default,
+              bigIcon: response.sprites.other['official-artwork'].front_default,
             };
             initialData = [...initialData, parsedInfo];
           })
