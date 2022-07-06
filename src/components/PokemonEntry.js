@@ -1,11 +1,11 @@
 import React from 'react';
 
-const PokemonEntry = () => {
+const PokemonEntry = ({pokemon}) => {
     return (
         <div className="pkmn-entry">
-            <img src="#" alt="icon goes here" />
-            <div className="pkmn-name">name of pokemon</div>
-            <div className="pkmn-id">pokedex #</div>
+            <img src={pokemon.icon} alt="icon goes here" />
+            <div className="pkmn-name">{pokemon.name}</div>
+            <div className="pkmn-id">{pokemon.id}</div>
         </div>
     );
 };
