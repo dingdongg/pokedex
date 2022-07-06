@@ -7,7 +7,7 @@ const PokemonEntry = ({pokemon, setSelectedIndex}) => {
     }
 
     return (
-        <div className="pkmn-entry" onClick={updateSelected}>
+        <div className={`pkmn-entry ${pokemon.name}`} onClick={updateSelected}>
             <img src={pokemon.smallIcon} alt="icon goes here" />
             <div className="pkmn-name">{pokemon.name}</div>
             <div className="pkmn-id">{pokemon.id}</div>
