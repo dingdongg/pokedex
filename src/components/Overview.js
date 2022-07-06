@@ -1,8 +1,18 @@
 import React from 'react';
 
-const Overview = () => {
+const Overview = ({pokemonList, selectedIndex}) => {
+    if (selectedIndex === -1) {
+        return (
+            <div>CLICK A POKEMON</div>
+        );
+    }
     return (
-        <h2>OVERVIEW!!!!!</h2>
+        <div className="overview">
+            <img src={pokemonList[selectedIndex].bigIcon} alt="big icon of pokemon" />
+            <div>{pokemonList[selectedIndex].name}</div>
+            <span>type 1</span>
+            <span>type 2</span>
+        </div>
     );
 };
 
