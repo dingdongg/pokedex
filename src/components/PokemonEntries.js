@@ -1,10 +1,10 @@
 import React from 'react';
 import PokemonEntry from './PokemonEntry';
 
-const PokemonEntries = ({pokedex, updatePokedex}) => {
+const PokemonEntries = ({pokemonList, updatePokedex}) => {
     return (
         <div className="pkmn-entries">
-            {pokedex.map(pkmn => (
+            {pokemonList.map(pkmn => (
                 <PokemonEntry key={Math.random() * 1000}></PokemonEntry>
             ))}
         </div>
