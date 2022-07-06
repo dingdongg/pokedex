@@ -39,4 +39,5 @@ html, body {
 .pkmn-entry {
   display: flex;
   justify-content: space-around;
+  align-items: baseline;
 }
