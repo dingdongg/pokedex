@@ -45,11 +45,6 @@ function App() {
     updatePokemonList(initialData);
   }
 
-  function updateSelected(e) {
-    setSelectedIndex(parseInt(e.target.children[2].textContent) - 1);
-  }
-
-
   return (
     <div className="App">
       <Overview
@@ -60,8 +55,7 @@ function App() {
       <PokemonEntries 
         pokemonList={pokemonList} 
         updatePokemonList={updatePokemonList}
-        selectedIndex={selectedIndex}
-        updateSelected={updateSelected}
+        setSelectedIndex={setSelectedIndex}
       >
       </PokemonEntries>
     </div>

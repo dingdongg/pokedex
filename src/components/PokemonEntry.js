@@ -1,6 +1,10 @@
 import React from 'react';
 
-const PokemonEntry = ({pokemon, updateSelected}) => {
+const PokemonEntry = ({pokemon, setSelectedIndex}) => {
+
+    function updateSelected(e) {
+        setSelectedIndex(pokemon.id - 1);
+    }
 
     return (
         <div className="pkmn-entry" onClick={updateSelected}>
