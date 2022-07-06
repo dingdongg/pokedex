@@ -16,25 +16,26 @@ function App() {
 
   async function fetchPokedexData() {
 
+    let initialData = [];
     for (let i = 1; i <= 4; i++) {
       try {
-        pokedex.getPokemonByName(i)
+        await pokedex.getPokemonByName(i)
           .then((response) => {
-            // console.log(response.sprites.versions['generation-viii'].icons.front_default);
-            updatePokemonList([...pokemonList, {
+            let parsedInfo = {
               name: response.name,
               id: response.id,
-              icon: response.sprites.versions['generation-viii'].icons.front_default
-            }]);
-            console.log(response);
+              icon: response.sprites.versions['generation-viii'].icons.front_default,
+            };
+            initialData = [...initialData, parsedInfo];
           })
           .catch((error) => {
             console.error(error);
-          })
+          });
       } catch (error) {
         throw error;
       }
     }
+    updatePokemonList(initialData);
   }
 
 
