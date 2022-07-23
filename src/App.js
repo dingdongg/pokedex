@@ -14,6 +14,7 @@ function App() {
   }
   const [pokedex] = useState(new Pokedex(pokedexConfig));
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [numLoaded, setNumLoaded] = useState(4);
 
   // run only once on reboot
   useEffect(() => {
@@ -23,6 +24,7 @@ function App() {
   async function fetchPokedexData() {
 
     let initialData = [];
+    let count;
     for (let i = 1; i <= 4; i++) {
       try {
         await pokedex.getPokemonByName(i)
@@ -34,6 +36,7 @@ function App() {
               bigIcon: response.sprites.other['official-artwork'].front_default,
             };
             initialData = [...initialData, parsedInfo];
+            count = i;
           })
           .catch((error) => {
             console.error(error);
@@ -42,6 +45,7 @@ function App() {
         throw error;
       }
     }
+    setNumLoaded(count);
     updatePokemonList(initialData);
   }
 
