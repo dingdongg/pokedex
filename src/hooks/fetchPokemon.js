@@ -19,6 +19,9 @@ export default function FetchPokemon(query, pageNumber) {
     //       infinite loading part
     useEffect(() => {
 
+        setLoading(true);
+        setError(false);
+
         axios({
             method: "GET",
             url: `https://pokeapi.co/api/v2/pokemon/`,
