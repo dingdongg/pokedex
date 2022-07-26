@@ -27,6 +27,7 @@ export default function fetchPokemon(query, pageNumber) {
             console.log(response.data);
         }).catch(error => console.error(error));
 
-    }, [query, pageNumber]);
+    }, [pageNumber]);
 
+    return {loading, hasMore, pokemonList, error};
 }
