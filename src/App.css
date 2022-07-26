@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,8 +15,6 @@ html, body {
   align-items: center;
   height: inherit;
   width: inherit;
-  /* position: absolute; */
-  /* top: 0; right: 0; bottom: 0; left: 0; */
   border: 5px solid orange;
 }
 
@@ -51,4 +49,4 @@ html, body {
 .search-bar-container {
   display: flex;
   justify-content: center;
-}
+} */
