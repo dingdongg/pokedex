@@ -25,9 +25,9 @@ function App() {
     // disconnect from previous watcher element, if any
     if (watcher.current) watcher.current.disconnect();
 
-    watcher.current = new IntersectionObserver(watchlist => {
+    watcher.current = new IntersectionObserver(watchList => {
 
-      if (watcher[0].isIntersecting && hasMore) {
+      if (watchList[0].isIntersecting && hasMore) {
         setPageNumber(pageNumber + 1);
       }
     });
