@@ -11,6 +11,13 @@ function App() {
   const [query, setQuery] = useState("");
   const [pageNumber, setPageNumber] = useState(23);
 
+  const {
+    hasMore, 
+    pokemonList,
+    error,
+    loading
+  } = fetchPokemon(query, pageNumber);
+
   const watcher = useRef(); // undefined at first
   const lastPokemonRef = useCallback(node => {
     if (loading) return; // prevent infinite API calls
@@ -27,13 +34,6 @@ function App() {
 
     if (node) watcher.current.observe(node);
   }, [loading, hasMore]);
-
-  const {
-    hasMore, 
-    pokemonList,
-    error,
-    loading
-  } = fetchPokemon(query, pageNumber);
 
   return (
     <div className="App">
