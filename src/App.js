@@ -56,12 +56,17 @@ function App() {
         selectedIndex={selectedIndex}
       >
       </Overview>
-      <PokemonEntries 
-        pokemonList={pokemonList} 
-        updatePokemonList={updatePokemonList}
-        setSelectedIndex={setSelectedIndex}
-      >
-      </PokemonEntries>
+      <div className="entries-container">
+        <div className="search-bar-container">
+          <input type="text" className="search-bar" size="25"/>
+        </div>
+        <PokemonEntries
+          pokemonList={pokemonList}
+          updatePokemonList={updatePokemonList}
+          setSelectedIndex={setSelectedIndex}
+        >
+        </PokemonEntries>
+      </div>
     </div>
   );
 }
