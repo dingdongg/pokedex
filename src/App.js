@@ -9,7 +9,7 @@ function App() {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const [query, setQuery] = useState("");
-  const [pageNumber, setPageNumber] = useState(23);
+  const [pageNumber, setPageNumber] = useState(1);
 
   const {
     hasMore, 
