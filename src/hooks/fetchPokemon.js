@@ -13,7 +13,7 @@ export default function FetchPokemon(query, pageNumber) {
     const OFFSET_INCREMENT_FACTOR = 20;
     const RESULTS_PER_PAGE = 20;
     const [offset, setOffset] = useState(RESULTS_PER_PAGE * (pageNumber - 1));
-    const [limit, setLimit] = useState(RESULTS_PER_PAGE * 2); 
+    const [limit, setLimit] = useState(RESULTS_PER_PAGE); 
 
     // TODO: don't worry about the search/filter function right now, focus on the
     //       infinite loading part
