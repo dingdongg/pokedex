@@ -1,4 +1,4 @@
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,14 +9,14 @@ html, body {
   width: 100%;
 }
 
-#root {
+/* #root {
   display: flex;
   justify-content: center;
   align-items: center;
   height: inherit;
   width: inherit;
   border: 5px solid orange;
-}
+} */
 
 .App {
   display: flex;
@@ -25,7 +25,7 @@ html, body {
   height: 80%;
   width: 80%;
 }
-
+/*
 .pkmn-entries {
   display: flex;
   flex-direction: column;
