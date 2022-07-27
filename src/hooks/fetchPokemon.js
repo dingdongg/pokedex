@@ -15,40 +15,30 @@ export default function FetchPokemon(query, pageNumber) {
     const [offset, setOffset] = useState(RESULTS_PER_PAGE * (pageNumber - 1));
     const [limit, setLimit] = useState(RESULTS_PER_PAGE); 
 
+    const parsePokemon = (rawData) => {
+        let rawData = response.data;
+        return {
+            name: rawData.name,
+            id: rawData.id,
+            smallIcon: rawData.sprites.versions['generation-viii'].icons.front_default,
+            bigIcon: rawData.sprites.other['official-artwork'].front_default,
+        };
+    }
+
     const resolveInOrder = async (batch, last) => {
         
         const promises = await Promise.all(batch.map(obj => {
             return axios.get(obj.url)
-                            .then(response => {
-                                let rawData = response.data;
-                                return {
-                                    name: rawData.name,
-                                    id: rawData.id,
-                                    smallIcon: rawData.sprites.versions['generation-viii'].icons.front_default,
-                                    bigIcon: rawData.sprites.other['official-artwork'].front_default,
-                                }
-                            })
+                            .then(response => parsePokemon(response))
                             .catch(e => console.error(e));
         }));
-        console.log('first batch', promises);
-
         const lastName = await axios.get(last.url)
-                                    .then(response => {
-                                        let rawData = response.data;
-                                        return {
-                                            name: rawData.name,
-                                            id: rawData.id,
-                                            smallIcon: rawData.sprites.versions['generation-viii'].icons.front_default,
-                                            bigIcon: rawData.sprites.other['official-artwork'].front_default,
-                                        }
-                                    })
+                                    .then(response => parsePokemon(response))
                                     .catch(e => console.error(e));
-        console.log('last promise', lastName);
+                                    
         setPokemonList(pokemonList.concat(...promises, lastName));
     }
 
-    // TODO: don't worry about the search/filter function right now, focus on the
-    //       infinite loading part
     useEffect(() => {
 
         setLoading(true);
@@ -66,7 +56,7 @@ export default function FetchPokemon(query, pageNumber) {
             setPokemonList(pokemonList.concat(...firstBatch));
 
             // need API calls to all but the last pokemon on the page to load
-            // before the last pokemon (in no particular order)
+            // before the last pokemon (first batch of API calls in no particular order amongst themselves)
             resolveInOrder(firstBatch, lastPokemon);
 
             // setLoading(false);
