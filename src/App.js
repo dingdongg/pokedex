@@ -42,6 +42,7 @@ function App() {
 
   return (
     <div className="App">
+      <Overview pokemonList={pokemonList} selectedIndex={selectedIndex}></Overview>
       {pokemonList.map((pokemon, index) => {
         if (pokemonList.length === index + 1) {
           return <div key={pokemon.name} ref={lastPokemonRef} className={`pkmn-entry ${pokemon.name}`} onClick={(e) => updateSelected(e, pokemon)}>
