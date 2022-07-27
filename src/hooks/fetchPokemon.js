@@ -9,7 +9,7 @@ export default function FetchPokemon(query, pageNumber) {
     const [pokemonList, setPokemonList] = useState([]);
     const [hasMore, setHasMore] = useState(false);
 
-    // private states
+    // private states (for API requests)
     const OFFSET_INCREMENT_FACTOR = 40;
     const RESULTS_PER_PAGE = 40;
     const [offset, setOffset] = useState(RESULTS_PER_PAGE * (pageNumber - 1));
