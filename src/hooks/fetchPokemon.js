@@ -15,7 +15,7 @@ export default function FetchPokemon(query, pageNumber) {
     const [offset, setOffset] = useState(RESULTS_PER_PAGE * (pageNumber - 1));
     const [limit, setLimit] = useState(RESULTS_PER_PAGE); 
 
-    const parsePokemon = (rawData) => {
+    const parsePokemon = (response) => {
         let rawData = response.data;
         return {
             name: rawData.name,
@@ -35,7 +35,7 @@ export default function FetchPokemon(query, pageNumber) {
         const lastName = await axios.get(last.url)
                                     .then(response => parsePokemon(response))
                                     .catch(e => console.error(e));
-                                    
+
         setPokemonList(pokemonList.concat(...promises, lastName));
     }
 
@@ -59,8 +59,8 @@ export default function FetchPokemon(query, pageNumber) {
             // before the last pokemon (first batch of API calls in no particular order amongst themselves)
             resolveInOrder(firstBatch, lastPokemon);
 
-            // setLoading(false);
-            // setHasMore(response.data.results.length >= RESULTS_PER_PAGE);   
+            setLoading(false);
+            setHasMore(response.data.results.length >= RESULTS_PER_PAGE);   
         }).catch(error => {
             setError(true);
             console.error(error);
