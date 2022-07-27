@@ -39,9 +39,15 @@ function App() {
     <div className="App">
       {pokemonList.map((pokemon, index) => {
         if (pokemonList.length === index + 1) {
-          return <div ref={lastPokemonRef} key={pokemon}>{pokemon}</div>
+          return <div ref={lastPokemonRef} key={pokemon.name}>
+                    <img src={pokemon.smallIcon} alt={`image of ${pokemon.name}`} />
+                    {pokemon.id}
+                 </div>
         }
-        return <div key={pokemon}>{pokemon}</div>
+        return <div key={pokemon.name}>
+                  <img src={pokemon.smallIcon} alt={`image of ${pokemon.name}`} />
+                  {pokemon.id}
+               </div>
       })}
       <div>{loading ? 'Loading...' : ""}</div>
       <div>{error ? 'error' : ""}</div>
