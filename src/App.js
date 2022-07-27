@@ -3,6 +3,7 @@ import Overview from './components/Overview';
 import PokemonEntries from './components/PokemonEntries';
 import React, {useState, useRef, useCallback} from 'react';
 import fetchPokemon from './hooks/FetchPokemon';
+import PokemonEntry from './components/PokemonEntry';
 
 function App() {
 
@@ -35,19 +36,26 @@ function App() {
     if (node) watcher.current.observe(node);
   }, [loading, hasMore]);
 
+  function updateSelected(e, pokemon) {
+      setSelectedIndex(pokemon.id - 1);
+  }
+
   return (
     <div className="App">
       {pokemonList.map((pokemon, index) => {
         if (pokemonList.length === index + 1) {
-          return <div ref={lastPokemonRef} key={pokemon.name}>
-                    <img src={pokemon.smallIcon} alt={`image of ${pokemon.name}`} />
-                    {pokemon.id}
-                 </div>
+          return <div key={pokemon.name} ref={lastPokemonRef} className={`pkmn-entry ${pokemon.name}`} onClick={(e) => updateSelected(e, pokemon)}>
+                      <img src={pokemon.smallIcon} alt={`image of ${pokemon.name}`} />
+                      <div className="pkmn-name">{pokemon.name}</div>
+                      <div className="pkmn-id">{pokemon.id}</div>
+                  </div>
         }
-        return <div key={pokemon.name}>
-                  <img src={pokemon.smallIcon} alt={`image of ${pokemon.name}`} />
-                  {pokemon.id}
-               </div>
+        return <PokemonEntry
+                  key={pokemon.name}
+                  pokemon={pokemon}
+                  setSelectedIndex={setSelectedIndex}
+                >
+                </PokemonEntry>
       })}
       <div>{loading ? 'Loading...' : ""}</div>
       <div>{error ? 'error' : ""}</div>
