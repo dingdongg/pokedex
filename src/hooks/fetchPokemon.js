@@ -19,15 +19,32 @@ export default function FetchPokemon(query, pageNumber) {
         
         const promises = await Promise.all(batch.map(obj => {
             return axios.get(obj.url)
-                            .then(response => response.data.name)
+                            .then(response => {
+                                let rawData = response.data;
+                                return {
+                                    name: rawData.name,
+                                    id: rawData.id,
+                                    smallIcon: rawData.sprites.versions['generation-viii'].icons.front_default,
+                                    bigIcon: rawData.sprites.other['official-artwork'].front_default,
+                                }
+                            })
                             .catch(e => console.error(e));
         }));
         console.log('first batch', promises);
 
         const lastName = await axios.get(last.url)
-                                    .then(response => response.data.name)
+                                    .then(response => {
+                                        let rawData = response.data;
+                                        return {
+                                            name: rawData.name,
+                                            id: rawData.id,
+                                            smallIcon: rawData.sprites.versions['generation-viii'].icons.front_default,
+                                            bigIcon: rawData.sprites.other['official-artwork'].front_default,
+                                        }
+                                    })
                                     .catch(e => console.error(e));
         console.log('last promise', lastName);
+        setPokemonList(pokemonList.concat(...promises, lastName));
     }
 
     // TODO: don't worry about the search/filter function right now, focus on the
@@ -51,7 +68,7 @@ export default function FetchPokemon(query, pageNumber) {
             // need API calls to all but the last pokemon on the page to load
             // before the last pokemon (in no particular order)
             resolveInOrder(firstBatch, lastPokemon);
-            
+
             // setLoading(false);
             // setHasMore(response.data.results.length >= RESULTS_PER_PAGE);   
         }).catch(error => {
