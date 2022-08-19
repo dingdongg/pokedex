@@ -3,6 +3,7 @@ import Overview from './components/Overview';
 import React, {useState, useRef, useCallback} from 'react';
 import FetchPokemon from './hooks/fetchPokemon';
 import PokemonEntry from './components/PokemonEntry';
+import SearchBar from './components/SearchBar';
 
 function App() {
 
@@ -41,7 +42,10 @@ function App() {
 
   return (
     <div className="App">
-      <Overview pokemonList={pokemonList} selectedIndex={selectedIndex}></Overview>
+      <div className='fixed-left'>
+        <SearchBar></SearchBar>
+        <Overview pokemonList={pokemonList} selectedIndex={selectedIndex}></Overview>
+      </div>
       <div className="pokemons-container">
         {pokemonList.map((pokemon, index) => {
           if (pokemonList.length === index + 1) {
