@@ -3,7 +3,7 @@ import React from 'react';
 const Overview = ({pokemonList, selectedIndex}) => {
     if (selectedIndex === -1) {
         return (
-            <div>CLICK A POKEMON</div>
+            <div className="overview">CLICK A POKEMON</div>
         );
     }
     return (
