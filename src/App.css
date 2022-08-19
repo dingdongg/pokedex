@@ -9,44 +9,22 @@ html, body {
   width: 100%;
 }
 
-/* #root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: inherit;
-  width: inherit;
-  border: 5px solid orange;
-} */
-
 .App {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 80%;
-  width: 80%;
 }
-/*
-.pkmn-entries {
+
+.overview {
+  position: fixed;
+  left: 10vw;
+  top: 20vh;
+}
+
+.pokemons-container {
   display: flex;
   flex-direction: column;
-  width: 50vw;
-  height: inherit;
-  justify-content: space-around;
+  position: relative;
+  left: 50vw;
+  top: 0;
 }
-
-.pkmn-entry {
-  display: flex;
-  justify-content: space-around;
-  align-items: baseline;
-}
-
-.entries-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.search-bar-container {
-  display: flex;
-  justify-content: center;
-} */
