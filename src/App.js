@@ -1,8 +1,7 @@
 import './App.css';
 import Overview from './components/Overview';
-import PokemonEntries from './components/PokemonEntries';
 import React, {useState, useRef, useCallback} from 'react';
-import fetchPokemon from './hooks/FetchPokemon';
+import FetchPokemon from './hooks/fetchPokemon';
 import PokemonEntry from './components/PokemonEntry';
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
     pokemonList,
     error,
     loading
-  } = fetchPokemon(query, pageNumber);
+  } = FetchPokemon(query, pageNumber);
 
   const watcher = useRef(); // undefined at first
   const lastPokemonRef = useCallback(node => {
@@ -43,21 +42,23 @@ function App() {
   return (
     <div className="App">
       <Overview pokemonList={pokemonList} selectedIndex={selectedIndex}></Overview>
-      {pokemonList.map((pokemon, index) => {
-        if (pokemonList.length === index + 1) {
-          return <div key={pokemon.name} ref={lastPokemonRef} className={`pkmn-entry ${pokemon.name}`} onClick={(e) => updateSelected(e, pokemon)}>
-                      <img src={pokemon.smallIcon} alt={`image of ${pokemon.name}`} />
-                      <div className="pkmn-name">{pokemon.name}</div>
-                      <div className="pkmn-id">{pokemon.id}</div>
-                  </div>
-        }
-        return <PokemonEntry
-                  key={pokemon.name}
-                  pokemon={pokemon}
-                  setSelectedIndex={setSelectedIndex}
-                >
-                </PokemonEntry>
-      })}
+      <div className="pokemons-container">
+        {pokemonList.map((pokemon, index) => {
+          if (pokemonList.length === index + 1) {
+            return <div key={pokemon.name} ref={lastPokemonRef} className={`pkmn-entry ${pokemon.name}`} onClick={(e) => updateSelected(e, pokemon)}>
+                        <img src={pokemon.smallIcon} alt={`${pokemon.name}`} />
+                        <div className="pkmn-name">{pokemon.name}</div>
+                        <div className="pkmn-id">{pokemon.id}</div>
+                    </div>
+          }
+          return <PokemonEntry
+                    key={pokemon.name}
+                    pokemon={pokemon}
+                    setSelectedIndex={setSelectedIndex}
+                  >
+                  </PokemonEntry>
+        })}
+      </div>
       <div>{loading ? 'Loading...' : ""}</div>
       <div>{error ? 'error' : ""}</div>
     </div>
