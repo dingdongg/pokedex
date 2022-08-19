@@ -15,6 +15,16 @@ html, body {
   align-items: center;
 }
 
+.search-bar {
+  position: fixed;
+  left: 10vw;
+  top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .overview {
   position: fixed;
   left: 10vw;
@@ -31,6 +41,6 @@ html, body {
   display: flex;
   flex-direction: column;
   position: relative;
-  left: 50vw;
-  top: 0;
+  left: 35vw;
+  top: 5vh;
 }
