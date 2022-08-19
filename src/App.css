@@ -19,6 +19,12 @@ html, body {
   position: fixed;
   left: 10vw;
   top: 20vh;
+  width: 475px;
+  height: 516px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .pokemons-container {
