@@ -6,12 +6,15 @@ const Overview = ({pokemonList, selectedIndex}) => {
             <div className="overview">CLICK A POKEMON</div>
         );
     }
+
+    const pkmn = pokemonList[selectedIndex];
+
     return (
         <div className="overview">
-            <img src={pokemonList[selectedIndex].bigIcon} alt="big icon of pokemon" />
-            <div>{pokemonList[selectedIndex].name}</div>
-            <span>type 1</span>
-            <span>type 2</span>
+            <img src={pkmn.bigIcon} alt="big icon of pokemon" />
+            <div>{pkmn.name}</div>
+            <span>{pkmn.typeOne}</span>
+            <span>{pkmn.typeTwo}</span>
         </div>
     );
 };
