@@ -4,6 +4,7 @@ import React, {useState, useRef, useCallback} from 'react';
 import FetchPokemon from './hooks/fetchPokemon';
 import PokemonEntry from './components/PokemonEntry';
 import SearchBar from './components/SearchBar';
+import pokemonService from './services/pokemon';
 
 function App() {
 
@@ -40,10 +41,14 @@ function App() {
       setSelectedIndex(pokemon.id - 1);
   }
 
+  const searchPokemon = (pokemonName) => {
+    pokemonService.get(pokemonName);
+  }
+
   return (
     <div className="App">
       <div className='fixed-left'>
-        <SearchBar></SearchBar>
+        <SearchBar searchPokemon={searchPokemon}></SearchBar>
         <Overview pokemonList={pokemonList} selectedIndex={selectedIndex}></Overview>
       </div>
       <div className="pokemons-container">
