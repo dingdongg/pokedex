@@ -35,7 +35,7 @@ function App() {
     });
 
     if (node) watcher.current.observe(node);
-  }, [loading, hasMore]);
+  }, [loading, hasMore, pageNumber]);
 
   function updateSelected(e, pokemon) {
       setSelectedIndex(pokemon.id - 1);
