@@ -9,4 +9,8 @@ const get = (pokemonName) => {
         });
 }
 
-export default { get };
+const methods = {
+    get
+};
+
+export default methods;
