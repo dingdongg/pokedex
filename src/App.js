@@ -10,7 +10,7 @@ function App() {
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
-  const [query, setQuery] = useState("");
+  const [query] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
 
   const {
@@ -21,6 +21,7 @@ function App() {
   } = FetchPokemon(query, pageNumber);
 
   const watcher = useRef(); // undefined at first
+  const nullRef = useRef();
   const lastPokemonRef = useCallback(node => {
     if (loading) return; // prevent infinite API calls
 
@@ -37,10 +38,6 @@ function App() {
     if (node) watcher.current.observe(node);
   }, [loading, hasMore, pageNumber]);
 
-  function updateSelected(e, pokemon) {
-      setSelectedIndex(pokemon.id - 1);
-  }
-
   const searchPokemon = (pokemonName) => {
     pokemonService.get(pokemonName);
   }
@@ -53,18 +50,13 @@ function App() {
       </div>
       <div className="pokemons-container">
         {pokemonList.map((pokemon, index) => {
-          if (pokemonList.length === index + 1) {
-            return <div key={pokemon.name} ref={lastPokemonRef} className={`pkmn-entry ${pokemon.name}`} onClick={(e) => updateSelected(e, pokemon)}>
-                        <img src={pokemon.smallIcon} alt={`${pokemon.name}`} />
-                        <div className="pkmn-name">{pokemon.name}</div>
-                        <div className="pkmn-id">{pokemon.id}</div>
-                    </div>
-          }
           return <PokemonEntry
                     key={pokemon.name}
                     pokemon={pokemon}
                     setSelectedIndex={setSelectedIndex}
-                  >
+                    ref={(pokemonList.length === index + 1) 
+                          ? lastPokemonRef
+                          : nullRef}>
                   </PokemonEntry>
         })}
       </div>
