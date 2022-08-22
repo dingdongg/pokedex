@@ -22,6 +22,8 @@ export default function FetchPokemon(query, pageNumber) {
             id: rawData.id,
             smallIcon: rawData.sprites.versions['generation-viii'].icons.front_default,
             bigIcon: rawData.sprites.other['official-artwork'].front_default,
+            typeOne: rawData.types[0].type.name,
+            typeTwo: (rawData.types.length === 2) ? rawData.types[1].type.name : '',
         };
     }
 
