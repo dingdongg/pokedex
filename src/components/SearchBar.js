@@ -1,11 +1,14 @@
 import React from "react";
+import { useState } from "react";
 
 
-const SearchBar = (props) => {
+const SearchBar = ({ searchPokemon }) => {
+
+    const [text, setText] = useState('');
 
     const doSomething = (e) => {
         e.preventDefault();
-        console.log('search clicked');
+        searchPokemon(text);
     }
 
     return (
@@ -13,7 +16,9 @@ const SearchBar = (props) => {
             <form onSubmit={doSomething}>
                 <input
                     type="text"
-                    placeholder="Search for a pokemon"
+                    placeholder="Name of pokemon"
+                    value={text}
+                    onChange={({ target }) => setText(target.value)}
                  />
                  <button type="submit">Search</button>
             </form>
