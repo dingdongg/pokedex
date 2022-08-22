@@ -44,3 +44,12 @@ html, body {
   left: 35vw;
   top: 5vh;
 }
+
+.pkmn-entry {
+  text-align: center;
+  transition: transform 0.1s;
+}
+
+.pkmn-entry:hover {
+  transform: scale(1.2);
+}
