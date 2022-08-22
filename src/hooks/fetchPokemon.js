@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 export default function FetchPokemon(query, pageNumber) {
@@ -13,7 +13,7 @@ export default function FetchPokemon(query, pageNumber) {
     const OFFSET_INCREMENT_FACTOR = 40;
     const RESULTS_PER_PAGE = 40;
     const [offset, setOffset] = useState(RESULTS_PER_PAGE * (pageNumber - 1));
-    const [limit, setLimit] = useState(RESULTS_PER_PAGE); 
+    const [limit] = useState(RESULTS_PER_PAGE); 
 
     const parsePokemon = (response) => {
         let rawData = response.data;
@@ -39,7 +39,7 @@ export default function FetchPokemon(query, pageNumber) {
                                     .catch(e => console.error(e));
 
         setPokemonList(pokemonList.concat(...promises, lastName));
-    }
+    };
 
     useEffect(() => {
 
