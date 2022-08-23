@@ -2,11 +2,9 @@ import axios from 'axios';
 
 const baseUrl = "https://pokeapi.co/api/v2/pokemon/";
 
-const get = (pokemonName) => {
-    axios.get(`${baseUrl}${pokemonName}`, {mode: 'cors'})
-        .then(response => {
-            console.log(response.data);
-        });
+const get = async (pokemonName) => {
+    const response = await axios.get(`${baseUrl}${pokemonName}`, {mode: 'cors'});
+    return response;
 }
 
 const methods = {
