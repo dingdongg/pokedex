@@ -67,8 +67,8 @@ export default function FetchPokemon(query, pageNumber) {
             setError(true);
             console.error(error);
         });
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageNumber]);
 
-    return {loading, hasMore, pokemonList, error};
+    return {loading, hasMore, pokemonList, error, parsePokemon};
 }
