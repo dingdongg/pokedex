@@ -12,10 +12,13 @@ function App() {
 
   const [query] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
+  const [useSearch, setUseSearch] = useState(false);
+  const [searchedPokemon, setSearchedPokemon] = useState({});
 
   const {
     hasMore, 
     pokemonList,
+    parsePokemon,
     error,
     loading
   } = FetchPokemon(query, pageNumber);
@@ -38,27 +41,45 @@ function App() {
     if (node) watcher.current.observe(node);
   }, [loading, hasMore, pageNumber]);
 
-  const searchPokemon = (pokemonName) => {
-    pokemonService.get(pokemonName);
+  const searchPokemon = async (pokemonName) => {
+    const results = await pokemonService.get(pokemonName);
+    console.log(parsePokemon(results));
+    setSearchedPokemon(parsePokemon(results));
+    setUseSearch(true);
   }
+
+  const renderSearched = () => (
+      <PokemonEntry
+        key={searchedPokemon.name}
+        pokemon={searchedPokemon}
+        setSelectedIndex={setSelectedIndex}
+        ref={nullRef}>
+      </PokemonEntry>
+  )
+
+  const renderList = () => (
+      pokemonList.map((pokemon, index) => {
+        return <PokemonEntry
+                  key={pokemon.name}
+                  pokemon={pokemon}
+                  setSelectedIndex={setSelectedIndex}
+                  ref={(pokemonList.length === index + 1) 
+                        ? lastPokemonRef
+                        : nullRef}>
+                </PokemonEntry>
+      })
+  )
 
   return (
     <div className="App">
       <div className='fixed-left'>
         <SearchBar searchPokemon={searchPokemon}></SearchBar>
-        <Overview pokemonList={pokemonList} selectedIndex={selectedIndex}></Overview>
+        {(!useSearch)
+          ? <Overview pokemonList={pokemonList} selectedIndex={selectedIndex}></Overview>
+          : <Overview pokemonList={[searchedPokemon]} selectedIndex={0}></Overview>}
       </div>
       <div className="pokemons-container">
-        {pokemonList.map((pokemon, index) => {
-          return <PokemonEntry
-                    key={pokemon.name}
-                    pokemon={pokemon}
-                    setSelectedIndex={setSelectedIndex}
-                    ref={(pokemonList.length === index + 1) 
-                          ? lastPokemonRef
-                          : nullRef}>
-                  </PokemonEntry>
-        })}
+        {(!useSearch) ? renderList() : renderSearched()}
       </div>
       <div>{loading ? 'Loading...' : ""}</div>
       <div>{error ? 'error' : ""}</div>
