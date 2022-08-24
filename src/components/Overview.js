@@ -13,8 +13,10 @@ const Overview = ({pokemonList, selectedIndex}) => {
         <div className="overview">
             <img src={pkmn.bigIcon} alt="big icon of pokemon" />
             <div>{pkmn.name}</div>
-            <span>{pkmn.typeOne}</span>
-            <span>{pkmn.typeTwo}</span>
+            <div className="types-container">
+                <span>{pkmn.typeOne}</span>
+                <span>{(pkmn.typeTwo ? ` || ${pkmn.typeTwo}` : '')}</span>
+            </div>
         </div>
     );
 };
