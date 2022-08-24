@@ -51,7 +51,7 @@ export default function FetchPokemon(query, pageNumber) {
             method: "GET",
             url: `https://pokeapi.co/api/v2/pokemon/`,
             params: {limit, offset},
-        }).then(response => {
+        }).then(async (response) => {
             setOffset(offset + OFFSET_INCREMENT_FACTOR);
             let results = response.data.results;
             let firstBatch = results.slice(0, results.length - 1);
@@ -60,7 +60,7 @@ export default function FetchPokemon(query, pageNumber) {
 
             // need API calls to all but the last pokemon on the page to load
             // before the last pokemon (first batch of API calls in no particular order amongst themselves)
-            resolveInOrder(firstBatch, lastPokemon);
+            await resolveInOrder(firstBatch, lastPokemon);
 
             setLoading(false);
             setHasMore(response.data.results.length >= RESULTS_PER_PAGE);   
