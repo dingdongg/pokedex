@@ -37,12 +37,21 @@ html, body {
   justify-content: center;
 }
 
-.pokemons-container {
+/* .pokemons-container {
   display: flex;
   flex-direction: column;
   position: relative;
   left: 35vw;
   top: 5vh;
+} */
+
+.pokemons-container {
+  display: grid;
+  position: relative;
+  left: 30vw;
+  top: 5vh;
+  grid-template-columns: auto auto auto auto;
+  gap: 5vh;
 }
 
 .pkmn-entry {
