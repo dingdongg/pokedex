@@ -52,6 +52,8 @@ html, body {
   top: 5vh;
   grid-template-columns: auto auto auto auto;
   gap: 5vh;
+  background-color: lightgrey;
+  padding: 2vh;
 }
 
 .pkmn-entry {
