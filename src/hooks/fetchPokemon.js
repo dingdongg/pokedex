@@ -10,8 +10,9 @@ export default function FetchPokemon(query, pageNumber) {
     const [hasMore, setHasMore] = useState(false);
 
     // private states (for API requests)
-    const OFFSET_INCREMENT_FACTOR = 40;
-    const RESULTS_PER_PAGE = 40;
+    const loadingNumber = 44;
+    const OFFSET_INCREMENT_FACTOR = loadingNumber;
+    const RESULTS_PER_PAGE = loadingNumber;
     const [offset, setOffset] = useState(RESULTS_PER_PAGE * (pageNumber - 1));
     const [limit] = useState(RESULTS_PER_PAGE); 
 
