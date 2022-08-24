@@ -37,6 +37,11 @@ html, body {
   justify-content: center;
 }
 
+.types-container {
+  display: flex;
+  justify-content: center;
+}
+
 .pokemons-container {
   display: grid;
   position: relative;
@@ -133,7 +138,7 @@ html, body {
   height: 50px;
   width: 50px;
   border-radius: 100%;
-  margin: auto;
+  margin: 10px;
 }
 
 .icon img {
