@@ -41,11 +41,23 @@ function App() {
     if (node) watcher.current.observe(node);
   }, [loading, hasMore, pageNumber]);
 
+  const refreshSearch = (isUsed, result = null) => {
+    setUseSearch(isUsed);
+    if (result) setSearchedPokemon(parsePokemon(result));
+  }
+
   const searchPokemon = async (pokemonName) => {
-    const results = await pokemonService.get(pokemonName);
-    console.log(parsePokemon(results));
-    setSearchedPokemon(parsePokemon(results));
-    setUseSearch(true);
+    if (pokemonName === '') {
+      refreshSearch(false);
+      return;
+    }
+    try {
+      const results = await pokemonService.get(pokemonName);
+      refreshSearch(true, results);
+    } catch (exception) {
+      console.log(exception);
+      refreshSearch(false);
+    }
   }
 
   const renderSearched = () => (
