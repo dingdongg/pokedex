@@ -16,7 +16,7 @@ const SearchBar = ({ searchPokemon }) => {
             <form onSubmit={doSomething}>
                 <input
                     type="text"
-                    placeholder="Name of pokemon"
+                    placeholder="EXACT pokemon name"
                     value={text}
                     onChange={({ target }) => setText(target.value)}
                  />
