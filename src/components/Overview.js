@@ -21,15 +21,17 @@ const Overview = ({pokemonList, selectedIndex}) => {
             <img src={pkmn.bigIcon} alt="big icon of pokemon" />
             <div>{pkmn.name}</div>
             <div className="types-container">
-                <img 
-                    className={`icon ${pkmn.typeOne}`} 
-                    src={iconsRepo[`${pkmn.typeOne}.svg`]} 
-                    alt={pkmn.typeOne} />
+                <div className={`icon ${pkmn.typeOne}`}>
+                    <img
+                        src={iconsRepo[`${pkmn.typeOne}.svg`]}
+                        alt={pkmn.typeOne} />
+                </div>
                 {(pkmn.typeTwo ?
-                    <img 
-                        className={`icon ${pkmn.typeTwo}`}
-                        src={iconsRepo[`${pkmn.typeTwo}.svg`]}
-                        alt={pkmn.typeTwo} /> :
+                    <div className={`icon ${pkmn.typeTwo}`}>
+                        <img
+                            src={iconsRepo[`${pkmn.typeTwo}.svg`]}
+                            alt={pkmn.typeTwo} />
+                    </div> :
                     '')}
             </div>
         </div>
