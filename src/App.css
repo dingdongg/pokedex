@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background: blueviolet;
 }
 
 html, body {
@@ -63,4 +64,19 @@ html, body {
 
 .pkmn-entry:hover {
   transform: scale(1.2);
+}
+
+.fire {
+  background: #FBA54C;
+}
+
+.bug {
+  background: #599c1f;
+}
+
+.icon {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  margin: auto;
 }
