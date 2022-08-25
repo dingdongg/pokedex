@@ -26,6 +26,9 @@ function App() {
 
   const watcher = useRef(); // undefined at first
   const nullRef = useRef();
+  const darkModeRef = useRef();
+  const appRef = useRef();
+  
   const lastPokemonRef = useCallback(node => {
     if (loading) return; // prevent infinite API calls
 
@@ -86,12 +89,16 @@ function App() {
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     darkModeRef.current.classList.toggle('dark-on');
+    darkModeRef.current.firstChild.classList.toggle('invert');
+    changeColorScheme(!darkMode);
   }
 
-  const darkModeRef = useRef();
+  const changeColorScheme = () => {
+    appRef.current.classList.toggle('dark-app');
+  }
 
   return (
-    <div className="App">
+    <div className="App" ref={appRef}>
       <div className='fixed-left'>
         <SearchBar searchPokemon={searchPokemon}></SearchBar>
         {(!useSearch)
