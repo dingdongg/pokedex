@@ -82,6 +82,12 @@ function App() {
       })
   )
 
+  const toggleDarkMode = () => {
+    darkModeRef.current.classList.toggle('dark-on');
+  }
+
+  const darkModeRef = useRef();
+
   return (
     <div className="App">
       <div className='fixed-left'>
@@ -92,6 +98,9 @@ function App() {
       </div>
       <div className="pokemons-container">
         {(!useSearch) ? renderList() : renderSearched()}
+      </div>
+      <div className='dark-mode-toggler' onClick={toggleDarkMode} ref={darkModeRef}>
+        <img className='dark-mode-icon' src={require('./icons/misc_images/dark-mode.png')} alt="dark mode toggle" />
       </div>
       <div>{loading ? 'Loading...' : ""}</div>
       <div>{error ? 'error' : ""}</div>

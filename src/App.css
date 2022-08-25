@@ -7,6 +7,7 @@
 html, body {
   height: 100%;
   width: 100%;
+  background: darkslategrey;
 }
 
 .App {
@@ -51,6 +52,28 @@ html, body {
   gap: 5vh;
   background-color: lightgrey;
   padding: 2vh;
+}
+
+.dark-mode-toggler {
+  position: fixed;
+  left: 35vw;
+  top: 5vh;
+  width: 105px;
+  display: flex;
+  align-items: center;
+  transition: padding-left 0.3s, background-color 0.3s;
+  border-radius: 25px 25px;
+}
+
+.dark-mode-icon {
+  width: 50px;
+  height: auto;
+}
+
+.dark-on {
+  padding-left: 50px;
+  width: 105px;
+  background-color: rgb(54, 54, 54);
 }
 
 .pkmn-entry {
