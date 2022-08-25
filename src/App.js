@@ -14,6 +14,7 @@ function App() {
   const [pageNumber, setPageNumber] = useState(1);
   const [useSearch, setUseSearch] = useState(false);
   const [searchedPokemon, setSearchedPokemon] = useState({});
+  const [darkMode, setDarkMode] = useState(false);
 
   const {
     hasMore, 
@@ -83,6 +84,7 @@ function App() {
   )
 
   const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
     darkModeRef.current.classList.toggle('dark-on');
   }
 
